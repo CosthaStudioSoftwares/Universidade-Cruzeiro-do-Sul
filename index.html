@@ -1,135 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carteirinha Virtual</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+  <title>Background com Círculos</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* Container do card */
-    .card-container {
-      background: #EAF6FE; /* cor igual ao modelo */
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      position: relative;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5; /* cor de fundo principal */
       overflow: hidden;
-      width: 100%;
-      max-width: 24rem;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
-    /* Círculos de fundo */
+    /* Círculos decorativos */
     .circle {
       position: absolute;
       border-radius: 50%;
-      background: #D6EEFB; /* azul suave */
+      opacity: 0.2;
     }
 
-    .circle.top-left {
-      width: 220px;
-      height: 220px;
-      top: -110px;
-      left: -110px;
+    .circle1 {
+      width: 300px;
+      height: 300px;
+      background: #ff4d4d;
+      top: -100px;
+      left: -100px;
     }
 
-    .circle.bottom-right {
-      width: 260px;
-      height: 260px;
-      bottom: -130px;
-      right: -130px;
+    .circle2 {
+      width: 200px;
+      height: 200px;
+      background: #4d79ff;
+      bottom: 50px;
+      right: 50px;
     }
 
-    /* Foto do perfil */
-    .profile-img {
-      width: 112px;
-      height: 112px;
-      border-radius: 9999px;
-      border: 4px solid white;
-      object-fit: cover;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    .circle3 {
+      width: 150px;
+      height: 150px;
+      background: #4dff88;
+      top: 150px;
+      right: -50px;
+    }
+
+    .circle4 {
+      width: 250px;
+      height: 250px;
+      background: #ffcc00;
+      bottom: -80px;
+      left: 30px;
+    }
+
+    /* Conteúdo central */
+    .content {
       position: relative;
       z-index: 10;
-    }
-
-    /* Texto cinza */
-    .text-detail-gray {
-      color: #5E6A75;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
     }
   </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body>
+  <!-- Círculos de fundo -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+  <div class="circle circle4"></div>
 
-  <header class="bg-white shadow-sm sticky top-0 z-10">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#" class="flex items-center text-gray-600 hover:text-gray-800">
-        <ion-icon name="arrow-back-outline" class="text-2xl"></ion-icon>
-      </a>
-      <h1 class="text-lg font-semibold text-gray-700 uppercase tracking-wider">
-        Carteirinha Virtual
-      </h1>
-      <div class="w-8"></div>
-    </nav>
-  </header>
-
-  <main class="flex-grow flex items-center justify-center p-4">
-    <div class="card-container">
-
-      <!-- círculos -->
-      <div class="circle top-left"></div>
-      <div class="circle bottom-right"></div>
-
-      <div class="relative z-20 flex flex-col items-center">
-        <div class="absolute top-0 left-0 p-4 pt-2">
-          <img src="https://logodownload.org/wp-content/uploads/2017/11/cruzeiro-do-sul-logo-1.png" alt="Logo Universidade Cruzeiro do Sul" class="h-8">
-        </div>
-
-        <div class="mt-12 mb-4">
-          <img src="https://i.imgur.com/8b2f2zD.jpg" alt="Foto de José David" class="profile-img">
-        </div>
-
-        <div class="text-center w-full">
-          <h2 class="text-2xl font-bold text-gray-800">José David Dos Santos Sampaio</h2>
-          <p class="text-gray-500 mt-1">Engenharia da Computação</p>
-
-          <div class="flex justify-between items-center mt-4 text-sm w-full px-2">
-            <span class="text-detail-gray font-medium">RGM 04511324-5</span>
-            <span class="text-detail-gray font-medium">VAL: 12/2029</span>
-          </div>
-        </div>
-
-        <hr class="w-full my-6 border-gray-200">
-
-        <div class="text-center">
-          <p class="font-semibold text-gray-700">CRUZEIRO DO SUL - GRADUAÇÃO EAD</p>
-          <a href="#" class="mt-4 inline-flex items-center gap-2 text-blue-600 font-medium hover:underline">
-            <ion-icon name="information-circle-outline" class="text-xl"></ion-icon>
-            Validar carteirinha
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full max-w-sm mx-auto mt-8">
-      <button class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors">
-        Solicitar carteirinha física
-      </button>
-    </div>
-  </main>
-
+  <!-- Conteúdo -->
+  <div class="content">
+    Seu conteúdo aqui 🚀
+  </div>
 </body>
 </html>
