@@ -1,82 +1,185 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Background com Círculos</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f5f5f5; /* cor de fundo principal */
-      overflow: hidden;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteirinha Virtual</title>
 
-    /* Círculos decorativos */
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.2;
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    .circle1 {
-      width: 300px;
-      height: 300px;
-      background: #ff4d4d;
-      top: -100px;
-      left: -100px;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    .circle2 {
-      width: 200px;
-      height: 200px;
-      background: #4d79ff;
-      bottom: 50px;
-      right: 50px;
-    }
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    .circle3 {
-      width: 150px;
-      height: 150px;
-      background: #4dff88;
-      top: 150px;
-      right: -50px;
-    }
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .circle4 {
-      width: 250px;
-      height: 250px;
-      background: #ffcc00;
-      bottom: -80px;
-      left: 30px;
-    }
+        /* Cores personalizadas para corresponder ao modelo */
+        .bg-custom-blue-light {
+            background-color: #E6F5FE; /* Um azul bem claro, quase branco, para a parte superior do card */
+        }
+        .text-custom-blue {
+            color: #007BFF; /* Azul mais vibrante para o botão e o link de validação */
+        }
+        .bg-custom-blue-dark {
+            background-color: #0056B3; /* Azul escuro para o botão principal */
+        }
 
-    /* Conteúdo central */
-    .content {
-      position: relative;
-      z-index: 10;
-      font-family: Arial, sans-serif;
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      text-align: center;
-    }
-  </style>
+        /* Estilos para o card da carteirinha */
+        .card-container {
+            background-color: #ffffff;
+            border-radius: 1.25rem; /* rounded-2xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            padding: 1.5rem; /* p-6 */
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 24rem; /* max-w-sm */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Estilos para as esferas de fundo */
+        .card-bg-decoration {
+            position: absolute;
+            background-color: #E8F7FF; /* Cor mais clara para as esferas */
+            border-radius: 50%;
+            opacity: 0.7; /* Para dar um leve efeito de transparência */
+        }
+
+        /* Esfera superior esquerda */
+        .card-bg-decoration.top-left {
+            width: 150px; /* Ajuste o tamanho conforme necessário */
+            height: 150px;
+            top: -60px; /* Posição para que parte dela fique visível no canto superior esquerdo */
+            left: -60px;
+        }
+
+        /* Esfera superior direita (pequena) */
+        .card-bg-decoration.top-right-small {
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            right: -30px; /* Posição para que parte dela fique visível no canto superior direito */
+            opacity: 0.5;
+        }
+
+        /* Esfera inferior direita */
+        .card-bg-decoration.bottom-right {
+            width: 180px;
+            height: 180px;
+            bottom: -70px; /* Posição para que parte dela fique visível no canto inferior direito */
+            right: -70px;
+            opacity: 0.6;
+        }
+
+        /* Esfera inferior esquerda (pequena) */
+        .card-bg-decoration.bottom-left-small {
+            width: 100px;
+            height: 100px;
+            bottom: 30px;
+            left: -40px;
+            opacity: 0.4;
+        }
+
+        /* Ajustes para a seção superior do card para simular a forma do modelo */
+        .card-header-bg {
+            background-color: #E8F7FF; /* Cor de fundo da parte superior */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px; /* Ajuste a altura conforme a imagem de referência */
+            border-radius: 1.25rem 1.25rem 0 0; /* Apenas cantos superiores arredondados */
+            z-index: 0;
+            overflow: hidden; /* Para que as esferas fiquem dentro dessa área */
+        }
+
+        /* Estilo para a imagem do perfil para ter a borda branca */
+        .profile-img {
+            width: 112px; /* w-28 */
+            height: 112px; /* h-28 */
+            border-radius: 9999px; /* rounded-full */
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            position: relative; /* Para z-index funcionar */
+            z-index: 10;
+        }
+
+        /* Cor do texto para os detalhes da carteirinha */
+        .text-detail-gray {
+            color: #6B7280; /* Cor um pouco mais escura para os detalhes, como no modelo */
+        }
+        
+    </style>
 </head>
-<body>
-  <!-- Círculos de fundo -->
-  <div class="circle circle1"></div>
-  <div class="circle circle2"></div>
-  <div class="circle circle3"></div>
-  <div class="circle circle4"></div>
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
-  <!-- Conteúdo -->
-  <div class="content">
-    Seu conteúdo aqui 🚀
-  </div>
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center text-gray-600 hover:text-gray-800">
+                <ion-icon name="arrow-back-outline" class="text-2xl"></ion-icon>
+            </a>
+            <h1 class="text-lg font-semibold text-gray-700 uppercase tracking-wider">
+                Carteirinha Virtual
+            </h1>
+            <div class="w-8"></div> </nav>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="card-container">
+            
+            <div class="card-header-bg">
+                 <div class="card-bg-decoration top-left"></div>
+                <div class="card-bg-decoration top-right-small"></div>
+            </div>
+
+            <div class="card-bg-decoration bottom-right"></div>
+            <div class="card-bg-decoration bottom-left-small"></div>
+            
+            <div class="relative z-20 flex flex-col items-center">
+                <div class="absolute top-0 left-0 p-4 pt-2">
+                     <img src="https://logodownload.org/wp-content/uploads/2017/11/cruzeiro-do-sul-logo-1.png" alt="Logo Universidade Cruzeiro do Sul" class="h-8">
+                </div>
+
+                <div class="mt-12 mb-4">
+                    <img src="https://i.imgur.com/8b2f2zD.jpg" alt="Foto de José David" class="profile-img">
+                </div>
+
+                <div class="text-center w-full">
+                    <h2 class="text-2xl font-bold text-gray-800">José David Dos Santos Sampaio</h2>
+                    <p class="text-gray-500 mt-1">Engenharia da Computação</p>
+                    
+                    <div class="flex justify-between items-center mt-4 text-sm w-full px-2">
+                        <span class="text-detail-gray font-medium">RGM 04511324-5</span>
+                        <span class="text-detail-gray font-medium">VAL: 12/2029</span>
+                    </div>
+                </div>
+
+                <hr class="w-full my-6 border-gray-200">
+
+                <div class="text-center">
+                    <p class="font-semibold text-gray-700">CRUZEIRO DO SUL - GRADUAÇÃO EAD</p>
+                    <a href="#" class="mt-4 inline-flex items-center gap-2 text-custom-blue font-medium hover:underline">
+                        <ion-icon name="information-circle-outline" class="text-xl"></ion-icon>
+                        Validar carteirinha
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-sm mx-auto mt-8">
+            <button class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors">
+                Solicitar carteirinha física
+            </button>
+        </div>
+    </main>
+
 </body>
 </html>
